@@ -35,7 +35,7 @@ const Home = () => {
         closeOnClick: false,
         pauseOnHover: false,
         draggable: true,
-        theme: "light",
+        theme: "colored",
       });
     } else {
       toast.warn("Please fill up all input fields", {
@@ -45,7 +45,7 @@ const Home = () => {
         closeOnClick: false,
         pauseOnHover: false,
         draggable: true,
-        theme: "light",
+        theme: "colored",
       });
     }
   };

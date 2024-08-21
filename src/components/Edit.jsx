@@ -2,7 +2,6 @@ import React from "react";
 import { ImCross } from "react-icons/im";
 import { useDispatch } from "react-redux";
 import { editNote } from "../../features/noteSlice";
-import { ToastContainer, toast } from "react-toastify";
 
 const Edit = ({
   setVisible,
@@ -13,6 +12,7 @@ const Edit = ({
   setEditedName,
   setEditedTitle,
   setEditedDescription,
+  showToastify,
 }) => {
   console.log(editedName, editedTitle, editedDescription);
 
@@ -27,20 +27,10 @@ const Edit = ({
     };
     dispatch(editNote(updatedValues));
     setVisible(false);
-
-    toast.success("Note updated successfully", {
-      position: "top-right",
-      autoClose: 1200,
-      hideProgressBar: true,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: true,
-      theme: "light",
-    });
   };
+  
   return (
     <>
-      <ToastContainer />
       <div className="w-full h-screen bg-slate-300 bg-opacity-60 fixed top-0 left-0 flex justify-center items-center">
         <div className="w-2/5 bg-white shadow-md rounded-md px-4 py-4 box-border">
           <div>
