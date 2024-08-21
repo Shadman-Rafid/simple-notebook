@@ -6,11 +6,14 @@ import { deleteNote } from "../../features/noteSlice";
 import Edit from "../components/Edit";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { LuClipboardEdit } from "react-icons/lu";
+import Delete from "../components/Delete";
 
 const TaskView = () => {
   const initialShow = 6;
   const [next, setNext] = useState(initialShow);
   const [visible, setVisible] = useState(false);
+  const [open, setOpen] = useState(false);
+  const [deleteData, setDeleteData] = useState({});
 
   const [editedName, setEditedName] = useState("");
   const [editedTitle, setEditedTitle] = useState("");
@@ -20,9 +23,12 @@ const TaskView = () => {
   const { notes } = useSelector((state) => state.note);
   const dispatch = useDispatch();
 
-  const handleDelete = (id) => {
-    dispatch(deleteNote(id));
+  const handleDelete = () => {
+    dispatch(deleteNote(deleteData?.id));
+    setOpen(false);
   };
+
+  console.log(deleteData);
 
   const handleEdit = (note) => {
     setVisible(true);
@@ -50,6 +56,11 @@ const TaskView = () => {
   const handleLoadMore = () => {
     setNext((prev) => prev + 3);
   };
+
+  function openDelete(note) {
+    setOpen(true);
+    setDeleteData(note);
+  }
 
   return (
     <>
@@ -91,7 +102,7 @@ const TaskView = () => {
                   </button>
                   <button
                     className="px-3 py-2 text-white font-medium rounded-md bg-red-600"
-                    onClick={() => handleDelete(note.id)}
+                    onClick={() => openDelete(note)}
                   >
                     <RiDeleteBin5Line />
                   </button>
@@ -111,6 +122,12 @@ const TaskView = () => {
           )}
         </div>
       </div>
+      <Delete
+        open={open}
+        closeDialog={() => setOpen(false)}
+        title={deleteData?.title}
+        deleteFunction={handleDelete}
+      />
     </>
   );
 };
