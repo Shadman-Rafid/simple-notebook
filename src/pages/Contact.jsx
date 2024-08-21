@@ -4,12 +4,14 @@ import { Helmet } from "react-helmet-async";
 const Contact = () => {
   return (
     <>
-    <Helmet>
+      <Helmet>
         <title>Contact</title>
-    </Helmet>
-    <div>Contact</div>
+      </Helmet>
+      <div className=" bg-yellow-200 w-full h-screen px-8">
+        <div>Contact</div>
+      </div>
     </>
-  )
+  );
 };
 
 export default Contact;

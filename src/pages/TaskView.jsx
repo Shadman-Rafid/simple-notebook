@@ -56,7 +56,7 @@ const TaskView = () => {
       <Helmet>
         <title>Task-View</title>
       </Helmet>
-      <div className=" bg-yellow-200 w-full  px-8">
+      <div className=" bg-yellow-200 w-full h-screen px-8">
         <div className="container py-4">
           <div className="grid grid-cols-3 gap-4 mt-4">
             {notes.slice(0, next).map((note) => (
