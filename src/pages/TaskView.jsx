@@ -95,13 +95,13 @@ const TaskView = () => {
                 </div>
                 <div className="flex justify-end gap-x-2">
                   <button
-                    className="px-3 py-2 text-white font-medium rounded-md bg-teal-600"
+                    className="px-3 py-2 text-white font-medium rounded-md bg-teal-500 hover:bg-teal-600"
                     onClick={() => handleEdit(note)}
                   >
                     <LuClipboardEdit />
                   </button>
                   <button
-                    className="px-3 py-2 text-white font-medium rounded-md bg-red-600"
+                    className="px-3 py-2 text-white font-medium rounded-md bg-red-600 hover:bg-red-700"
                     onClick={() => openDelete(note)}
                   >
                     <RiDeleteBin5Line />
@@ -113,7 +113,7 @@ const TaskView = () => {
           {notes.length > next && (
             <div className="text-center">
               <button
-                className="px-4 py-2 text-white bg-pink-700 font-medium rounded-md mt-6"
+                className="px-4 py-2 text-white bg-pink-600 hover:bg-pink-700 font-medium rounded-md mt-6"
                 onClick={handleLoadMore}
               >
                 Load More

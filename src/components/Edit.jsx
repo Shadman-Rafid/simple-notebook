@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
 import { useDispatch } from "react-redux";
 import { editNote } from "../../features/noteSlice";
@@ -14,7 +14,13 @@ const Edit = ({
   setEditedDescription,
   showToastify,
 }) => {
-  console.log(editedName, editedTitle, editedDescription);
+  const [charCount, setCharCount] = useState(200);
+
+  const handleCharCount = (e) => {
+    let max = 200;
+    length = editedDescription.length;
+    setCharCount(max - length);
+  };
 
   const dispatch = useDispatch();
   const handleUpdate = () => {
@@ -39,7 +45,7 @@ const Edit = ({
                 <u>Edit Your Note</u>
               </h1>
               <div
-                className="absolute top-0 right-1 w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center cursor-pointer"
+                className="absolute top-0 right-1 w-9 h-9 rounded-full bg-slate-300 flex items-center justify-center cursor-pointer hover:bg-slate-400"
                 onClick={() => setVisible(false)}
               >
                 <ImCross />
@@ -61,12 +67,16 @@ const Edit = ({
               placeholder="Type your note"
               maxLength={400}
               rows={5}
-              className="w-full rounded-md border border-cyan-800 p-2 mb-4 outline-none resize-none"
+              className="w-full rounded-md border border-cyan-800 p-2 outline-none resize-none"
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
+              onKeyUp={(e) => handleCharCount(e)}
             ></textarea>
+            <p className="text-sm text-right text-slate-500 mb-6">
+              <span>{charCount}</span> characters remaining
+            </p>
             <button
-              className="bg-amber-600 text-white text-base font-mono px-5 py-2 rounded-md"
+              className="bg-amber-600 text-white text-base font-mono px-5 py-2 rounded-md hover:bg-amber-700"
               onClick={handleUpdate}
             >
               Update Note
