@@ -1,7 +1,9 @@
-import { Hidden } from "@mui/material";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { ToastContainer, toast } from "react-toastify";
+import { MdPhoneAndroid } from "react-icons/md";
+import { HiOutlineMail } from "react-icons/hi";
+import { SlLocationPin } from "react-icons/sl";
 
 const Contact = () => {
   const [name, setName] = useState("");
@@ -143,12 +145,39 @@ const Contact = () => {
         <title>Contact</title>
       </Helmet>
       <ToastContainer />
-      <div className=" bg-sky-100 w-full px-8">
-        <h1 className="font-sans font-bold text-4xl text-sky-600 mb-12 pt-12 underline underline-offset-8">
+      <div className=" bg-sky-100 w-full px-20">
+        <h1 className="font-sans font-bold text-4xl text-sky-600 mb-16 pt-12 underline underline-offset-8">
           Contact Us
         </h1>
-        <div className="flex justify-end">
-          <div className="w-1/2 p-4 box-border">
+        <div className="flex justify-between text-start">
+          <div className="text-stone-700 font-sans">
+            <div className="mb-14">
+              <div className="flex gap-5">
+                <MdPhoneAndroid className="w-10 h-10" />
+                <h2 className="text-3xl mb-2">Give us a call</h2>
+              </div>
+              <p className="text-lg ms-14">+880 1868 957 580</p>
+            </div>
+            <div className="mb-14">
+              <div className="flex gap-5">
+                <HiOutlineMail className="w-10 h-10" />
+                <h2 className="text-3xl mb-2">Send us an email</h2>
+              </div>
+              <p className="text-lg ms-14">mohammadshadmanrafid@gmail.com</p>
+            </div>
+            <div>
+              <div className="flex gap-5">
+                <SlLocationPin className="w-10 h-10" />
+                <h2 className="text-3xl mb-2">Location</h2>
+              </div>
+              <div className="text-lg ms-14">
+                <p>House 18, Road 3</p>
+                <p>DOHS, Bayezid Bostami</p>
+                <p>Chattogram</p>
+              </div>
+            </div>
+          </div>
+          <div className="w-1/2 px-4 box-border">
             <input
               type="text"
               placeholder="Name"
@@ -208,13 +237,24 @@ const Contact = () => {
               <span>{charCount}</span> characters remaining
             </p>
             <button
-            className="bg-slate-800 text-white text-xl font-bold font-mono px-5 py-2 my-2 mb-20 rounded-md hover:bg-transparent hover:text-black hover:border border-slate-800 border-spacing-4"
-            onClick={handleSaveContact}
-          >
-            SUBMIT
-          </button>
+              className="bg-slate-800 text-white text-xl font-bold font-mono px-5 py-2 my-2 mb-16 rounded-md hover:bg-transparent hover:text-black hover:border border-slate-800"
+              onClick={handleSaveContact}
+            >
+              SUBMIT
+            </button>
           </div>
-          
+        </div>
+
+        <div className="overflow-hidden pb-20 flex flex-col justify-center items-center">
+          <h3 className="text-3xl font-medium mb-6">Google Map Location</h3>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d8773.702870577219!2d91.81217600668539!3d22.395592623879267!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30acd86ab55d87fd%3A0x1d3aa56ec6278ed9!2sChittagong%20DOHS%2C%20Chattogram!5e0!3m2!1sen!2sbd!4v1724868778092!5m2!1sen!2sbd"
+            width="1000"
+            height="500"
+            allowfullscreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
       </div>
     </>

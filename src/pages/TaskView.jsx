@@ -119,7 +119,7 @@ const TaskView = () => {
                 <div className="text-start">
                   <h3 className="font-serif">
                     <span className="font-sans font-bold">Name: </span>
-                    <span className="text-violet-800 font-semibold ps-2"> {note.name} </span>
+                    <span className="text-indigo-700 font-semibold ps-2"> {note.name} </span>
                   </h3>
                   <h3 className="font-sans mb-2">
                     <span className="font-sans font-bold">Description: </span>
@@ -151,7 +151,7 @@ const TaskView = () => {
           {notes.length > next && (
             <div className="text-center">
               <button
-                className="px-4 py-2 text-white bg-pink-600 hover:bg-pink-700 font-medium rounded-md mt-6"
+                className="px-4 py-2 text-white bg-violet-700 hover:bg-fuchsia-800 font-medium rounded-md mt-6"
                 onClick={handleLoadMore}
               >
                 Load More
