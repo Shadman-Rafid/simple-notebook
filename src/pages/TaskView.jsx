@@ -102,7 +102,7 @@ const TaskView = () => {
         <title>Task-View</title>
       </Helmet>
       <ToastContainer />
-      <div className=" bg-yellow-200 w-full h-full px-8">
+      <div className=" bg-yellow-200 w-full min-h-screen max-h-full px-8">
         <div className="container py-4">
           <h3 className="text-3xl text-pink-600 font-mono font-bold mt-4 mb-10 underline underline-offset-8">
             ALL SAVED NOTES
