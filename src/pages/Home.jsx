@@ -44,7 +44,7 @@ const Home = () => {
       setCheckBox(false)
 
       toast.success("Note added successfully", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 1200,
         hideProgressBar: true,
         closeOnClick: false,
@@ -54,7 +54,7 @@ const Home = () => {
       });
     } else {
       toast.warn("Please fill up all input fields", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 1200,
         hideProgressBar: true,
         closeOnClick: false,
@@ -80,8 +80,8 @@ const Home = () => {
             <div className="flex">
               <BsPersonSquare className="w-8 h-8 mr-2" />
               <input
-                placeholder="  Your Name"
-                className="w-full rounded-md border border-cyan-800 p-2 mb-4 outline-none"
+                placeholder="Your Name"
+                className="w-full rounded-md border border-cyan-800 px-4 py-3 mb-4 outline-none"
                 onChange={(e) => setName(e.target.value)}
                 value={name}
               />
@@ -89,8 +89,8 @@ const Home = () => {
             <div className="flex">
               <MdOutlineDriveFileRenameOutline className="w-8 h-8 mr-2" />
               <input
-                placeholder="  Note Title"
-                className="w-full rounded-md border border-cyan-800 p-2 mb-4 outline-none"
+                placeholder="Note Title"
+                className="w-full rounded-md border border-cyan-800 px-4 py-3 mb-4 outline-none"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
               />
@@ -98,10 +98,10 @@ const Home = () => {
             <div className="flex">
               <FcViewDetails className="w-8 h-8 mt-12 mr-2" />
               <textarea
-                placeholder="  Type your note"
+                placeholder="Type your note"
                 maxLength={200}
                 rows={5}
-                className="w-full rounded-md border border-cyan-800 p-2 outline-none resize-none"
+                className="w-full rounded-md border border-cyan-800 px-4 py-3 outline-none resize-none"
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
                 onKeyUp={(e) => handleCharCount(e)}

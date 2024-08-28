@@ -29,7 +29,7 @@ const TaskView = () => {
     dispatch(deleteNote(deleteData?.id));
     setOpen(false);
     toast.success("Note Deleted successfully", {
-      position: "top-right",
+      position: "top-center",
       autoClose: 1200,
       hideProgressBar: true,
       closeOnClick: false,
@@ -66,7 +66,7 @@ const TaskView = () => {
       setVisible(false);
       setCurrentTask(null);
       toast.success("Note updated successfully", {
-        position: "top-right",
+        position: "top-center",
         autoClose: 1200,
         hideProgressBar: true,
         closeOnClick: false,
@@ -102,24 +102,24 @@ const TaskView = () => {
         <title>Task-View</title>
       </Helmet>
       <ToastContainer />
-      <div className=" bg-pink-200 w-full h-screen px-8">
+      <div className=" bg-yellow-200 w-full px-8">
         <div className="container py-4">
-          <h3 className="text-3xl text-pink-600 font-mono font-bold mt-2 mb-6 underline underline-offset-8">
+          <h3 className="text-3xl text-pink-600 font-mono font-bold mt-4 mb-10 underline underline-offset-8">
             ALL SAVED NOTES
           </h3>
-          <div className="grid grid-cols-3 gap-4 mt-4">
+          <div className="grid grid-cols-3 gap-8">
             {notes.slice(0, next).map((note) => (
               <div
-                className="shadow-md bg-white rounded-md px-4 py-3 border border-cyan-600"
+                className="shadow-md bg-white rounded-md px-4 py-3 border border-cyan-600 border-double"
                 key={note.id}
               >
-                <h3 className="font-sans font-bold text-xl text-cyan-700 underline underline-offset-8 pb-4">
+                <h3 className="font-sans font-bold text-xl text-cyan-600 underline underline-offset-8 pb-4">
                   {note.title}
                 </h3>
                 <div className="text-start">
                   <h3 className="font-serif">
                     <span className="font-sans font-bold">Name: </span>
-                    {note.name}
+                    <span className="text-violet-800 font-semibold ps-2"> {note.name} </span>
                   </h3>
                   <h3 className="font-sans mb-2">
                     <span className="font-sans font-bold">Description: </span>
@@ -133,7 +133,7 @@ const TaskView = () => {
                 </div>
                 <div className="flex justify-end gap-x-2">
                   <button
-                    className="px-3 py-2 text-white font-medium rounded-md bg-teal-500 hover:bg-teal-600"
+                    className="px-3 py-2 text-white font-medium rounded-md bg-emerald-500 hover:bg-emerald-600"
                     onClick={() => handleEdit(note)}
                   >
                     <LuClipboardEdit />

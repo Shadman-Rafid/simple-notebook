@@ -22,10 +22,10 @@ const Edit = ({
   return (
     <>
       <div className="w-full h-screen bg-slate-300 bg-opacity-60 fixed top-0 left-0 flex justify-center items-center">
-        <div className="w-2/5 bg-white shadow-md rounded-md px-4 py-4 box-border">
+        <div className="w-2/5 bg-white shadow-md rounded-md px-8 py-8 box-border">
           <div>
             <div className="relative">
-              <h1 className="font-mono text-3xl text-amber-800 mb-6 underline underline-offset-8">
+              <h1 className="font-mono text-3xl text-yellow-700 mb-8 underline underline-offset-8">
                 <u>Edit Your Note</u>
               </h1>
               <div
@@ -37,13 +37,13 @@ const Edit = ({
             </div>
             <input
               placeholder="Your Name"
-              className="w-full rounded-md border border-cyan-800 p-2 mb-4 outline-none"
+              className="w-full rounded-md border border-cyan-800 px-6 py-3 mb-6 outline-none"
               value={editedName}
               onChange={(e) => setEditedName(e.target.value)}
             />
             <input
               placeholder="Note Title"
-              className="w-full rounded-md border border-cyan-800 p-2 mb-4 outline-none"
+              className="w-full rounded-md border border-cyan-800 px-6 py-3 mb-6 outline-none"
               value={editedTitle}
               onChange={(e) => setEditedTitle(e.target.value)}
             />
@@ -51,7 +51,7 @@ const Edit = ({
               placeholder="Type your note"
               maxLength={200}
               rows={5}
-              className="w-full rounded-md border border-cyan-800 p-2 outline-none resize-none"
+              className="w-full rounded-md border border-cyan-800 px-6 py-3 outline-none resize-none"
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
               onKeyUp={(e) => handleCharCount(e)}
