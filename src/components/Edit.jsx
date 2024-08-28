@@ -1,40 +1,24 @@
 import React, { useState } from "react";
 import { ImCross } from "react-icons/im";
-import { useDispatch } from "react-redux";
-import { editNote } from "../../features/noteSlice";
 
 const Edit = ({
   setVisible,
   editedName,
   editedTitle,
   editedDescription,
-  editedId,
   setEditedName,
   setEditedTitle,
   setEditedDescription,
-  showToastify,
+  handleUpdate
 }) => {
-  const [charCount, setCharCount] = useState(200);
+  let maxChar = 200;
+  const [charCount, setCharCount] = useState(200 - editedDescription.length);
 
   const handleCharCount = (e) => {
-    let max = 200;
     length = editedDescription.length;
-    setCharCount(max - length);
+    setCharCount(maxChar - length);
   };
 
-  const dispatch = useDispatch();
-  const handleUpdate = () => {
-    const updatedValues = {
-      id: editedId,
-      name: editedName,
-      title: editedTitle,
-      description: editedDescription,
-      createdAt: new Date().toString(),
-    };
-    dispatch(editNote(updatedValues));
-    setVisible(false);
-  };
-  
   return (
     <>
       <div className="w-full h-screen bg-slate-300 bg-opacity-60 fixed top-0 left-0 flex justify-center items-center">
@@ -65,21 +49,31 @@ const Edit = ({
             />
             <textarea
               placeholder="Type your note"
-              maxLength={400}
+              maxLength={200}
               rows={5}
               className="w-full rounded-md border border-cyan-800 p-2 outline-none resize-none"
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
               onKeyUp={(e) => handleCharCount(e)}
             ></textarea>
-            <p className="text-sm text-right text-slate-500 mb-6">
+            <p
+              className={`text-sm text-right mb-6 ${
+                charCount <= 10 ? "text-red-500" : "text-slate-500"
+              }`}
+            >
               <span>{charCount}</span> characters remaining
             </p>
             <button
-              className="bg-amber-600 text-white text-base font-mono px-5 py-2 rounded-md hover:bg-amber-700"
+              className="bg-green-600 text-white text-base font-mono px-5 py-2 mr-6 rounded-md hover:bg-green-700"
               onClick={handleUpdate}
             >
-              Update Note
+              Update
+            </button>
+            <button
+              className="bg-blue-700 text-white text-base font-mono px-5 py-2 rounded-md hover:bg-blue-900"
+              onClick={() => setVisible(false)}
+            >
+              Cancel
             </button>
           </div>
         </div>

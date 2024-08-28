@@ -15,6 +15,16 @@ const Home = () => {
   const dispatch = useDispatch();
   const [charCount, setCharCount] = useState(200);
 
+  const handleCharCount = (e) => {
+    let max = 200;
+    length = description.length;
+    setCharCount(max - length);
+  };
+
+  const handleCheck = (e) => {
+    setCheckBox(e.target.checked);
+  };
+
   // Save Note Button handler
   const handleAddNote = (e) => {
     e.preventDefault();
@@ -30,6 +40,8 @@ const Home = () => {
       setName("");
       setTitle("");
       setDescription("");
+      setCharCount(200)
+      setCheckBox(false)
 
       toast.success("Note added successfully", {
         position: "top-right",
@@ -53,26 +65,16 @@ const Home = () => {
     }
   };
 
-  const handleCheck = (e) => {
-    setCheckBox(e.target.checked);
-  };
-
-  const handleCharCount = (e) => {
-    let max = 200;
-    length = description.length;
-    setCharCount(max - length);
-  };
-
   return (
     <>
       <Helmet>
         <title>Home</title>
       </Helmet>
       <ToastContainer />
-      <div className="w-full h-screen bg-yellow-200 flex justify-center items-center">
-        <div className="w-5/12 bg-white shadow-md rounded-md px-4 py-4 box-border mb-28">
+      <div className="w-full h-screen bg-pink-200 flex justify-center items-center">
+        <div className="w-5/12 bg-white border border-cyan-400 shadow-md rounded-md p-6 mt-4 box-border mb-28">
           <div>
-            <h1 className="font-mono text-3xl text-amber-800 mb-6 underline underline-offset-8">
+            <h1 className="font-mono font-bold text-3xl text-rose-700 mb-6 mt-2 underline underline-offset-8">
               Add Your Note
             </h1>
             <div className="flex">
@@ -105,10 +107,14 @@ const Home = () => {
                 onKeyUp={(e) => handleCharCount(e)}
               ></textarea>
             </div>
-            <p className="text-sm text-right text-slate-500 mb-2">
+            <p
+              className={`text-sm text-right mb-2 mr-2 ${
+                charCount <= 10 ? "text-red-500" : "text-slate-500"
+              }`}
+            >
               <span>{charCount}</span> characters remaining
             </p>
-            <div className="text-left mb-4 text-sm">
+            <div className="text-left mb-4 text-sm ml-8">
               <input
                 type="checkbox"
                 onClick={handleCheck}
@@ -117,7 +123,7 @@ const Home = () => {
               I want to add this note
             </div>
             <button
-              className="bg-amber-600 text-white text-base font-bold font-mono px-5 py-2 rounded-md disabled:bg-amber-300 hover:bg-amber-700"
+              className="bg-rose-600 text-white text-base font-bold font-mono px-5 py-2 my-2 rounded-md disabled:bg-rose-300 hover:bg-rose-700"
               onClick={handleAddNote}
               disabled={!checkBox}
             >

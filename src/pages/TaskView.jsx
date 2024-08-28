@@ -2,16 +2,18 @@ import { formatDistance } from "date-fns";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteNote } from "../../features/noteSlice";
+import { deleteNote, editNote } from "../../features/noteSlice";
 import Edit from "../components/Edit";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { LuClipboardEdit } from "react-icons/lu";
 import Delete from "../components/Delete";
+import { ToastContainer, toast } from "react-toastify";
 
 const TaskView = () => {
   const initialShow = 6;
   const [next, setNext] = useState(initialShow);
   const [visible, setVisible] = useState(false);
+  const [currentTask, setCurrentTask] = useState(null);
   const [open, setOpen] = useState(false);
   const [deleteData, setDeleteData] = useState({});
 
@@ -26,16 +28,53 @@ const TaskView = () => {
   const handleDelete = () => {
     dispatch(deleteNote(deleteData?.id));
     setOpen(false);
+    toast.success("Note Deleted successfully", {
+      position: "top-right",
+      autoClose: 1200,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: false,
+      draggable: true,
+      theme: "colored",
+    });
   };
 
-  console.log(deleteData);
+  function openDelete(note) {
+    setOpen(true);
+    setDeleteData(note);
+  }
 
   const handleEdit = (note) => {
+    setCurrentTask(note);
     setVisible(true);
     setEditedName(note.name);
     setEditedTitle(note.title);
     setEditedDescription(note.description);
     setEditedId(note.id);
+  };
+
+  const handleUpdate = () => {
+    if (currentTask) {
+      const updatedValues = {
+        id: currentTask.id,
+        name: editedName,
+        title: editedTitle,
+        description: editedDescription,
+        createdAt: new Date().toString(),
+      };
+      dispatch(editNote(updatedValues));
+      setVisible(false);
+      setCurrentTask(null);
+      toast.success("Note updated successfully", {
+        position: "top-right",
+        autoClose: 1200,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        theme: "colored",
+      });
+    }
   };
 
   if (visible) {
@@ -45,30 +84,29 @@ const TaskView = () => {
         editedName={editedName}
         editedTitle={editedTitle}
         editedDescription={editedDescription}
-        editedId={editedId}
         setEditedName={setEditedName}
         setEditedTitle={setEditedTitle}
         setEditedDescription={setEditedDescription}
+        handleUpdate={handleUpdate}
       />
     );
   }
-  
+
   const handleLoadMore = () => {
     setNext((prev) => prev + 3);
   };
-
-  function openDelete(note) {
-    setOpen(true);
-    setDeleteData(note);
-  }
 
   return (
     <>
       <Helmet>
         <title>Task-View</title>
       </Helmet>
-      <div className=" bg-yellow-200 w-full h-screen px-8">
+      <ToastContainer />
+      <div className=" bg-pink-200 w-full h-screen px-8">
         <div className="container py-4">
+          <h3 className="text-3xl text-pink-600 font-mono font-bold mt-2 mb-6 underline underline-offset-8">
+            ALL SAVED NOTES
+          </h3>
           <div className="grid grid-cols-3 gap-4 mt-4">
             {notes.slice(0, next).map((note) => (
               <div

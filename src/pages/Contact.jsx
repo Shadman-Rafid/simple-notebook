@@ -7,7 +7,7 @@ const Contact = () => {
       <Helmet>
         <title>Contact</title>
       </Helmet>
-      <div className=" bg-yellow-200 w-full h-screen px-8">
+      <div className=" bg-pink-200 w-full h-screen px-8">
         <div>Contact</div>
       </div>
     </>
